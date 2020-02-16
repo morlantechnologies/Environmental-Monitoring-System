@@ -23,20 +23,22 @@ boolean started=false;
 char smsbuffer[160];
 char n[20];
 
-void setup() 
-{
+void setup() {
+  
   //Serial connection.
   Serial.begin(9600);
   Serial.println("GSM Shield testing.");
+  
   //Start configuration of shield with baudrate.
   //For http uses is raccomanded to use 4800 or slower.
-  if (gsm.begin(2400)){
+  if (gsm.begin(2400)) {
     Serial.println("\nstatus=READY");
     started=true;  
   }
   else Serial.println("\nstatus=IDLE");
   
-  if(started){
+  if(started) {
+    
     //Enable this two lines if you want to send an SMS.
     if (sms.SendSMS("233501429955", "Air pollution threshold VALUES exceeded at lat: -5.2331356 and long: 1.23579987"))
       Serial.println("\nSMS sent OK");
@@ -44,39 +46,38 @@ void setup()
 
 };
 
-void loop() 
-{
-  if(started){
+void loop() {
+  
+  if(started) {
+    
     //Read if there are messages on SIM card and print them.
-    if(gsm.readSMS(smsbuffer, 160, n, 20))
-    {
-      Serial.println(n);
-      Serial.println(smsbuffer);
-    }
+      if(gsm.readSMS(smsbuffer, 160, n, 20)) {
+        Serial.println(n);
+        Serial.println(smsbuffer);
+      }
     delay(1000);
 
-    if(started){
+    if(started) {
+      
     //Read if there are messages on SIM card and print them.
-    if(gsm.readSMS(smsbuffer, 160, n, 20))
-    {
-      Serial.println(n);
-      Serial.println(smsbuffer);
-    }
+      if(gsm.readSMS(smsbuffer, 160, n, 20)) {
+        Serial.println(n);
+        Serial.println(smsbuffer);
+      }
     }
 
-    if (gsm.begin(2400)){
-    Serial.println("\nstatus=READY");
-    started=true;  
+    if (gsm.begin(2400)) {
+      
+      Serial.println("\nstatus=READY");
+      started=true;  
   }
   else Serial.println("\nstatus=IDLE");
   
-  if(started){
+  if(started) {
+    
     //Enable this two lines if you want to send an SMS.
     if (sms.SendSMS("233248445970", "Air pollution threshold VALUES exceeded at lat: -5.2331356 and long: 1.23579987"))
       Serial.println("\nSMS sent OK");
-  }
-
-    
-    
+  }    
   }
 };

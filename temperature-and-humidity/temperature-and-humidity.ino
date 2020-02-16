@@ -1,6 +1,6 @@
 #include "DHT.h"
-#define dht_apin A0 // Analog Pin sensor is connected to
- 
+#define dht_apin A0 
+
 dht DHT;
  
 void setup(){
@@ -10,10 +10,9 @@ void setup(){
   Serial.println("DHT11 Humidity & temperature Sensor\n\n");
   delay(1000);//Wait before accessing Sensor
  
-}//end "setup()"
+}
  
 void loop(){
-  //Start of Program 
  
     DHT.read11(dht_apin);
     
@@ -23,9 +22,8 @@ void loop(){
     Serial.print("temperature = ");
     Serial.print(DHT.temperature); 
     Serial.println("C  ");
-    
-    delay(5000);//Wait 5 seconds before accessing sensor again.
+
+    //Wait 5 seconds before accessing sensor again,fastest should be once every two seconds.
+    delay(5000);
  
-  //Fastest should be once every two seconds.
- 
-}// end loop() 
+}
